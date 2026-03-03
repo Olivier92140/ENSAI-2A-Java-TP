@@ -81,6 +81,10 @@ public class Password {
                 containUpper = true;
             if (Character.isLowerCase(c))
                 containLower = true;
+            if (Character.isDigit(c))
+                containDigit = true;
+            if (Character.isWhitespace(c))
+                containSpace = true;
         }
 
         return isLongEnougth && containLower && containUpper && containDigit && !containSpace;
@@ -97,9 +101,11 @@ public class Password {
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
 
-        // Code here
+        HashMap<String, Boolean> result = new HashMap<>();
 
-        return null;
+        for (String password : passwords) {
+            result.put(password, isStrongPassword(password));
+        }
     }
 
     /**
