@@ -45,7 +45,7 @@ public class Password {
         String istr = String.format("%06d", i);
 
         // Comparaison correcte des String
-        if (hashPassword(istr) == (targetHash)) {
+        if (hashPassword(istr).equals(targetHash)) {
             return istr;
         }
     }
@@ -69,9 +69,22 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        boolean isLongEnougth = password.length() >= 12;
+        boolean containLower = false;
+        boolean containUpper = false;
+        boolean containDigit = false;
+        boolean containSpace = false;
 
-        return false;
+        for (int i=0; i<password.length(); i++){
+            char c = password.charAt(i);
+            if (Character.isUpperCase(c))
+                containUpper = true;
+            if (Character.isLowerCase(c))
+                containLower = true;
+        }
+
+        return isLongEnougth && containLower && containUpper && containDigit && !containSpace;
+
     }
 
     /**
