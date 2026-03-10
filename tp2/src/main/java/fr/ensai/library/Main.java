@@ -4,19 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Author tolkien = new Author("J.R.R. Tolkien", 81, "UK");
 
-        Book fellowshipOfTheRing = new Book(
-                "978-0-618-26025-6",
-                "The Fellowship of the Ring",
-                tolkien,
-                1954,
-                423);
-
-<<<<<<< HEAD
-        System.out.println(fellowshipOfTheRing.toString());
-=======
-        System.out.println(fellowshipOfTheRing);
->>>>>>> dd8a231b0c3fe8d317f6cb28620f2bd9867f27de
+        Library lib = new Library("agora");
+        lib.loadBooksFromCSV("books.csv");
+        lib.displayBooks();
+        
     }
 }
