@@ -9,20 +9,12 @@ public class Author {
 
     // Attributes
     private String name;
-    private int age;
-    private String nationality;
 
     /**
-<<<<<<< HEAD
-     * Constructs a new Book object.
-=======
      * Constructs a new Author object.
->>>>>>> dd8a231b0c3fe8d317f6cb28620f2bd9867f27de
      */
-    public Author(String name, int age, String nationality) {
+    public Author(String name) {
         this.name = name;
-        this.age = age;
-        this.nationality = nationality;
     }
 
     public String getName() {
@@ -30,7 +22,6 @@ public class Author {
     }
 
     /**
-     * Indicates whether some other object is "equal to" this one.
      * Two authors are considered equal if their names are equal.
      */
     @Override
@@ -45,8 +36,12 @@ public class Author {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
     public String toString() {
         return "Author " + name;
     }
-
 }

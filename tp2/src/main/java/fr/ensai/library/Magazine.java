@@ -21,12 +21,6 @@ public class Magazine extends Item {
 
     @Override
     public String toString() {
-        return "Magazine{" +
-                "title='" + getTitle() + '\'' +
-                ", year=" + getYear() +
-                ", pageCount=" + getPageCount() +
-                ", issn='" + issn + '\'' +
-                ", issueNumber='" + issueNumber + '\'' +
-                '}';
+        return "Magazine " + title;
     }
-} 
+}

@@ -6,73 +6,44 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Library {
 
-    // -------------------------------------------------------
-    // Attributes
-    // -------------------------------------------------------
     private String name;
-    private List<Item> items;
+    private ArrayList<Item> items;
 
-    /**
-     * Constructs a new ...
-     * 
-     * @param name  nom du livre
-     * @param books liste de livre
-     */
     public Library(String name) {
         this.name = name;
-        this.items = new ArrayList();
+        this.items = new ArrayList<>();
     }
 
-    // -------------------------------------------------------
-    // Methods
-    // -------------------------------------------------------
-
-    /**
-     * ajoute un livre
-     */
-    public void addBook(Book b) {
-        this.items.add(b);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    /**
-     * Increment value of attribute2
-     * A parameter, return void
-     * 
-     * @param increment increment
-     */
-    public void displayBooks() {
-        if (items == null) {
-            System.out.println("librairie vide");
+    public void displayItems() {
+        if (items.isEmpty()) {
+            System.out.println("No items in the library.");
         } else {
-            for (Book b : this.books) {
-                System.out.println(b.toString());
+            for (Item item : items) {
+                System.out.println(item.toString());
             }
         }
-
     }
 
-    /**
-     * Checks if attribute2 is odd.
-     *
-     * @return true if attribute2 is odd, false otherwise.
-     */
-
-    /**
-     * Main method
-     */
     public void loadBooksFromCSV(String filePath) {
-
         URL url = getClass().getClassLoader().getResource(filePath);
+
+        if (url == null) {
+            System.err.println("File not found: " + filePath);
+            return;
+        }
 
         try (BufferedReader br = new BufferedReader(new FileReader(url.getFile()))) {
             Map<String, Author> authors = new HashMap<>();
             String line;
-            br.readLine(); // Skip the header line
+            br.readLine();
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -84,22 +55,34 @@ public class Library {
                     int year = Integer.parseInt(data[3].trim());
                     int pageCount = Integer.parseInt(data[4].trim());
 
-                    // Check if author already exists in the map
                     Author author = authors.get(authorName);
                     if (author == null) {
                         author = new Author(authorName);
                         authors.put(authorName, author);
-                        // System.out.println(String.format("Create %s", author));
+                        System.out.println("Create " + author);
                     }
-                    Book book = new Book(isbn, title, author, year, pageCount);
 
-                    this.addItem(items);
+                    Book book = new Book(isbn, title, author, year, pageCount);
+                    this.addItem(book);
                 }
             }
-        } catch (
-
-        IOException e) {
-            System.Error.println("Error reading the file: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
         }
+    }
+
+    public ArrayList<Book> getBooksByAuthor(Author author) {
+        ArrayList<Book> booksByAuthor = new ArrayList<>();
+
+        for (Item item : items) {
+            if (item instanceof Book) {
+                Book book = (Book) item;
+                if (book.getAuthor().equals(author)) {
+                    booksByAuthor.add(book);
+                }
+            }
+        }
+
+        return booksByAuthor;
     }
 }

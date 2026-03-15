@@ -17,13 +17,7 @@ public class Library {
     private List<Loan> activeLoans;
     private List<Loan> completedLoans;
 
-<<<<<<< HEAD
     // Constructor
-=======
-    /**
-     * Constructs a new Library object.
-     */
->>>>>>> dd8a231b0c3fe8d317f6cb28620f2bd9867f27de
     public Library(String name) {
         this.name = name;
         this.items = new ArrayList<>();
@@ -33,26 +27,17 @@ public class Library {
 
     // Method to add a book to the library's collection
     public void addIem(Item item) {
-<<<<<<< HEAD
         items.add(item);
     }
 
     public List<Loan> getActiveLoans() {
         return activeLoans;
-=======
-        this.items.add(item);
-    }
-
-    public List<Loan> getActiveLoans() {
-        return this.activeLoans;
->>>>>>> dd8a231b0c3fe8d317f6cb28620f2bd9867f27de
     }
 
     /**
      * Displays all items currently present in the library.
      */
     public void displayItems() {
-<<<<<<< HEAD
 
         System.out.println("\n**********************************************");
         System.out.println("* All items                                  *");
@@ -64,27 +49,6 @@ public class Library {
                 System.out.println(item);
             }
         }
-=======
-        if (this.items.isEmpty()) {
-            System.out.println("\n[!] The library is empty.");
-            return;
-        }
-
-        String rowFormat = "| %-10s | %-50s |%n";
-        String separator = "+------------+----------------------------------------------------+";
-
-        System.out.println("\n" + separator);
-        System.out.printf(rowFormat, "Type", "Title");
-        System.out.println(separator);
-
-        for (Item item : this.items) {
-            System.out.printf(rowFormat,
-                    item.getClass().getSimpleName(),
-                    item.getTitle());
-        }
-
-        System.out.println(separator);
->>>>>>> dd8a231b0c3fe8d317f6cb28620f2bd9867f27de
     }
 
     /**
