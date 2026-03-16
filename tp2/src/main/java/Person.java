@@ -1,13 +1,15 @@
+package fr.ensai.library;
+
 public abstract class Person {
 
     // Attributes
     public String name;
     public int age;
 
-    // Constructor
-    public Person(String name) {
-        this.name = name;
-    }
+    // // Constructor
+    // public Person(String name) {
+    //     this.name = name;
+    // }
 
     // Constructor
     public Person(String name, int age) {
