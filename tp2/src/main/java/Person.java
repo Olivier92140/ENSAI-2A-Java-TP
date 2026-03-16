@@ -1,6 +1,4 @@
-package fr.ensai.library;
-
-public class Person {
+public abstract class Person {
 
     // Attributes
     public String name;

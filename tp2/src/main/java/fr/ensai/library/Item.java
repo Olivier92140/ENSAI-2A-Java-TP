@@ -12,4 +12,7 @@ public abstract class Item {
         this.pageCount = pageCount;
     }
   
+    public String getTitle(){
+        return title;
+    }
 }

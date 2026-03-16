@@ -6,12 +6,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import fr.Loan;
 
 public class Library {
 
     private String name;
     private ArrayList<Item> items;
+    //private List<Loan> activeLoans;
+    //private List<Loan> completedLoans;
 
     public Library(String name) {
         this.name = name;
