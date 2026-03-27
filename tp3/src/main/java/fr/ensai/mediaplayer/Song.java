@@ -1,16 +1,20 @@
 package fr.ensai.mediaplayer;
 
+
+import java.util.Objects;
+
 /**
  * Represents a song with essential attributes.
  */
 public class Song {
-    private String singer;
+    private Artist singer;
     private String title;
     private int year;
     private int duration;
     private String lyrics;
-    private String author;
-    private String composer;
+    private Artist author;
+    private Artist composer;
+    private Genre genre;
 
     /**
      * Constructs a new Song object.
@@ -23,8 +27,9 @@ public class Song {
      * @param lyrics   The lyrics of the song.
      * @param author   The author of the song.
      * @param composer The composer of the song.
+     * @param genre genre of the song.
      */
-    public Song(String title, String singer, int year, int duration, String lyrics, String author, String composer) {
+    public Song(String title, Artist singer, int year, int duration, String lyrics, Artist author, Artist composer, Genre genre) {
         this.title = title;
         this.singer = singer;
         this.year = year;
@@ -32,6 +37,7 @@ public class Song {
         this.lyrics = lyrics;
         this.author = author;
         this.composer = composer;
+        this.genre = genre;
     }
 
     /**
@@ -63,4 +69,22 @@ public class Song {
         return Objects.hash(this.title, this.singer, this.year);
     }
 
+  public String play() {
+
+    // Découper la chaîne en mots (séparateur = espace)
+    String[] mots = this.lyrics.split(" ");
+
+    for (String mot : mots) {
+        System.out.println(mot);
+
+        try {
+            Thread.sleep(100); // pause entre chaque mot
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Thread was interrupted");
+        }
+    }
+
+    return this.lyrics;
+}
 }
