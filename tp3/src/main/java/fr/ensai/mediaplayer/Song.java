@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Represents a song with essential attributes.
  */
-public class Song {
+public class Song extends Media{
     private Artist singer;
     private String title;
     private int year;
@@ -30,9 +30,7 @@ public class Song {
      * @param genre genre of the song.
      */
     public Song(String title, Artist singer, int year, int duration, String lyrics, Artist author, Artist composer, Genre genre) {
-        this.title = title;
-        this.singer = singer;
-        this.year = year;
+        super(title, duration, year);
         this.duration = duration;
         this.lyrics = lyrics;
         this.author = author;
