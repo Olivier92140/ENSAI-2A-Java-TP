@@ -6,10 +6,10 @@ hotel:
   elevator:
     capacity: 3
   spawn-probability:
-    ground: 0.6
-    other: 0.3
+    ground: 0.65
+    other: 0.35
   display:
     column-width:
-      floor: 5
-      elevator: 24
+      floor: 7
+      elevator: 3
       persons: 20

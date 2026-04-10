@@ -34,6 +34,7 @@ public class Floor {
         this.waitingPeople = new ArrayList<>();
         this.spawnProbability = (number == 0) ? Config.getDouble("hotel.spawn-probability.ground")
                 : Config.getDouble("hotel.spawn-probability.other");
+
     }
 
     public int getNumber() {
@@ -74,10 +75,37 @@ public class Floor {
      * Requests the first elevator to stop at this floor.
      * 
      * @param elevators the list of elevators available in the hotel
+     * 
      */
+
+    /*   Méthode qui appelle un ascenseur s'il est déjà en route vers cet étage sinon ne faites rien
+        sinon, la méthode trouve l'ascenseur le moins sollicité et ajoutez l'étage à la fin de sa liste de destinations */
     public void requestElevator(List<Elevator> elevators) {
-        elevators.get(0).addDestination(this.number);
+    boolean includeDestination = false;
+    int nbDestinations = Integer.MAX_VALUE;
+    Elevator bestElevator = null;
+
+    for (Elevator elevator : elevators) {
+        if (elevator.containDestination(number)) {
+            includeDestination = true;
+            bestElevator = elevator;
+            break;
+        }
     }
+
+    if (!includeDestination) {
+        for (Elevator elevator : elevators) {
+            if (elevator.getDestinationQueueSize() < nbDestinations) {
+                nbDestinations = elevator.getDestinationQueueSize();
+                bestElevator = elevator;
+            }
+        }
+    }
+
+    if (bestElevator != null) {
+        bestElevator.addDestination(number);
+    }
+}
 
     /**
      * Displays the current status of this floor in the console, including

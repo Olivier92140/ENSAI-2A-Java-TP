@@ -24,7 +24,7 @@ public class Person {
     public Person(int startFloor) {
         this.nickname = Person.generateNickname();
         this.startFloor = startFloor;
-        this.targetFloor = Person.generateTargetFloor();
+        this.targetFloor = this.generateTargetFloor();
     }
 
     /**
@@ -43,9 +43,20 @@ public class Person {
      * 
      * @return the target floor number
      */
-    private static int generateTargetFloor() {
-        return random.nextInt(4);
+
+    /* Méthode qui permet à une personne de choisir au hasard un étage de destination parmi les autres étages de l'hôtel. */
+    private int generateTargetFloor() {
+        int floor1 = random.nextInt(Config.getInt("hotel.display.column-width.floor"));
+        while(floor1 == this.startFloor){
+            floor1 = random.nextInt(Config.getInt("hotel.display.column-width.floor"));
+
+        }
+        
+        return floor1;
     }
+
+    
+
 
     public String getNickname() {
         return this.nickname;
