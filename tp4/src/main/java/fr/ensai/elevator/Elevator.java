@@ -198,6 +198,7 @@ public class Elevator {
     this.currentFloor = currentFloor;
     }
 
+    // nombre de passagers de l'ascenseur
     public int getPassengerCount() {
     return this.passengers.size();
 }
