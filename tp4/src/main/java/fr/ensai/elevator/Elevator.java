@@ -190,6 +190,18 @@ public class Elevator {
         return this.passengers.size() >= this.capacity;
     }
 
+    public List<Integer> getDestinationQueue() {
+    return this.destinationQueue;
+}
+
+    public void setCurrentFloor(int currentFloor) {
+    this.currentFloor = currentFloor;
+    }
+
+    public int getPassengerCount() {
+    return this.passengers.size();
+}
+
     // met à jour la direction de l'ascenseur
     public void updateDirection() {
     if (this.destinationQueue.isEmpty()) {
