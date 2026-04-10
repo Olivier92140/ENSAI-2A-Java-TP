@@ -10,6 +10,6 @@ hotel:
     other: 0.35
   display:
     column-width:
-      floor: 7
+      floor: 4
       elevator: 3
       persons: 20

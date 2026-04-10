@@ -10,6 +10,7 @@ public class Person {
     private String nickname;
     private int startFloor;
     private int targetFloor;
+    private Direction direction;
 
     private static final String CHARS = "abcdefghijklmnopqrstuvwxyz";
     private static int NEXT_CHAR_INDEX = 0;
@@ -25,6 +26,7 @@ public class Person {
         this.nickname = Person.generateNickname();
         this.startFloor = startFloor;
         this.targetFloor = this.generateTargetFloor();
+        this.direction = this.getDirection();
     }
 
     /**
@@ -55,9 +57,6 @@ public class Person {
         return floor1;
     }
 
-    
-
-
     public String getNickname() {
         return this.nickname;
     }
@@ -73,5 +72,16 @@ public class Person {
     @Override
     public String toString() {
         return this.nickname + this.targetFloor;
+    }
+
+    // donne la direction d'une personne dans l'ascenseur
+    public Direction getDirection() {
+        if (this.targetFloor > this.startFloor) {
+            return Direction.UP;
+        }
+        if (this.targetFloor < this.startFloor) {
+            return Direction.DOWN;
+        }
+        return Direction.IDLE;
     }
 }

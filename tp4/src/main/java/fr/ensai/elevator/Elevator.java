@@ -25,6 +25,7 @@ public class Elevator {
     private List<Integer> destinationQueue;
     private List<Person> passengers;
     private List<Person> lastUnloaded;
+    private Direction direction;
 
     /**
      * Constructs a new Elevator with the specified parameters.
@@ -40,6 +41,7 @@ public class Elevator {
         this.destinationQueue = new ArrayList<>();
         this.passengers = new ArrayList<>();
         this.lastUnloaded = new ArrayList<>();
+        this.direction = Direction.IDLE;
     }
 
     public int getId() {
@@ -183,8 +185,26 @@ public class Elevator {
     public void addPassenger(Person person){
         this.passengers.add(person);
     }
-    // méthode qui dit si l'ascenseur est plein
+    // dit si l'ascenseur est plein
     public boolean isFull(){
         return this.passengers.size() >= this.capacity;
     }
+
+    // met à jour la direction de l'ascenseur
+    public void updateDirection() {
+    if (this.destinationQueue.isEmpty()) {
+        this.direction = Direction.IDLE;
+    } else {
+        int nextFloor = this.destinationQueue.getFirst();
+
+        if (nextFloor > this.currentFloor) {
+            this.direction = Direction.UP;
+        } else if (nextFloor < this.currentFloor) {
+            this.direction = Direction.DOWN;
+        } else {
+            this.direction = Direction.IDLE;
+        }
+    }
+}
+
 }
